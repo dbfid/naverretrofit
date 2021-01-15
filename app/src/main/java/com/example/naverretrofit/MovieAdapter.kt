@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieItemHolder>() {
 
-    private lateinit var callback: (Movie) -> Unit
+    private lateinit var callback: (Movie) -> Unit // 이 클래스에서만 사용 늦은초기화 사용해서 처음에 널 값으로 안 받는걸로 해서 콜백을 좀 더 안전하게? 만들어볼려고
     private val items: ArrayList<Movie> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieItemHolder {

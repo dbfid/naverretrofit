@@ -100,17 +100,23 @@ class MainActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<Movie>, response: Response<Movie>){
                 isLoading(false)
-                with(response){
+
+                if(response.isSuccessful){
+                    response.body()?.let{
+                                        it.items.let{
+                                            adapter.setItems(it)
+                                        }
+                                    }?: onMessage("실패")
+                }
+
+
+
+
+                /*with(response){
                     val body = body() //밑에 body라는 것을 만들어주기 위해 써준것
 
-                    if(isSuccessful && body != null){ // 뭔가 신호가 잡힌다면 성공인거고 아니면 실패인거고
-                        body.items.let{
-                            adapter.setItems(it)
-                        }
-                    }else{
-                        onMessage("실패")
-                    }
-                }
+
+                }*/
             }
         })
     }
